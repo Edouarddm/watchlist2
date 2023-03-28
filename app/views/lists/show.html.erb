@@ -1,0 +1,31 @@
+<div class="container row">
+  <h1 class="text-center mt-5"><%= @list.name %></h1>
+  <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div><% @list.bookmarks.each do |bookmark| %>
+    <p><%= bookmark.comment %></p>
+    <p><%= bookmark.movie.title %></p>
+    <p><%= bookmark.movie.overview %></p>
+    <%= image_tag bookmark.movie.poster_url, height: 400, width: 300, crop: :fit %>
+    <% end %>
+  </div>
+
+  <%= link_to 'Ajouter un film à ta liste', new_list_bookmark_path(@list) %>
+  <%= link_to 'Retourner aux listes', lists_path %>
+</div>
